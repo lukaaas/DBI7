@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class DeleteTables
-{
+{   //Entfernt alle Tabellen aus der Datenbank
     public static void deleteTables(Connection conn) throws SQLException
     {
         Statement stmt = conn.createStatement();

@@ -5,12 +5,13 @@ import java.sql.SQLException;
 public class Verbindung
 {
     public static Connection dbConnection() throws SQLException
-    {
+    {   //Wird verwendet um eine Verbindung zu einer MySQL-Datenbank herzustellen
+        //Datenbank URL, Datenbank user und passwort werden hinterlegt
         Connection conn = null;
         String connectionUrl = "jdbc:mysql://192.168.178.47:3306/DBI";
         String connectionUser = "dbi";
         String connectionPassword ="root";
-
+        //URL, USER und PASSWORD werden übergeben
         try
         {
             conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);

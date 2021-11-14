@@ -3,7 +3,7 @@ import java.sql.*;
 public class Tables
 {
     static PreparedStatement stmt;
-
+    //Erstellt die Tabelle branches
     public static void createBranches(Connection conn)throws SQLException
     {
         stmt = conn.prepareStatement("CREATE TABLE branches (branchid int not null, branchname char(20) not null,"
@@ -11,7 +11,7 @@ public class Tables
         stmt.executeUpdate();
         System.out.println("Tabelle branches wurde erstellt");
     }
-
+    //Erstellt die Tabelle accounts
     public static void createAccounts(Connection conn)throws SQLException
     {
         stmt = conn.prepareStatement("CREATE TABLE accounts(accid int not null, name char(20) not null,"
@@ -19,7 +19,7 @@ public class Tables
         stmt.executeUpdate();
         System.out.println("Tabelle accounts wurde erstellt");
     }
-
+    //Erstellt die Tabelle tellers
     public static void createTellers(Connection conn)throws SQLException
     {
         stmt = conn.prepareStatement("CREATE TABLE tellers(tellerid int not null, tellername char(20) not null,"
@@ -27,7 +27,7 @@ public class Tables
         stmt.executeUpdate();
         System.out.println("Tabelle tellers wurde erstellt");
     }
-
+    //Erstellt die Tabelle history
     public static void createHistory(Connection conn)throws SQLException
     {
         stmt = conn.prepareStatement("CREATE TABLE history(accid int not null, tellerid int not null, delta int not null,"
