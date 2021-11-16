@@ -2,12 +2,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Verbindung
+public class Connect
 {
-    public static Connection dbConnection() throws SQLException
+    public static java.sql.Connection dbConnection() throws SQLException
     {   //Wird verwendet um eine Verbindung zu einer MySQL-Datenbank herzustellen
         //Datenbank URL, Datenbank user und passwort werden hinterlegt
-        Connection conn = null;
+        java.sql.Connection conn = null;
         String connectionUrl = "jdbc:mysql://192.168.178.47:3306/DBI";
         String connectionUser = "dbi";
         String connectionPassword ="root";
@@ -26,7 +26,7 @@ public class Verbindung
         return conn;
     }
 
-    public static void dbDisconnect(Connection conn) throws SQLException
+    public static void dbDisconnect(java.sql.Connection conn) throws SQLException
     {
         conn.close();
     }

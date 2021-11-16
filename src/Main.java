@@ -1,25 +1,46 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main
 {
+    static Scanner scan = new Scanner(System.in);
+
+    public static void deleteTables(Connection conn) throws SQLException
+    {
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("DROP TABLE IF EXISTS history");
+        stmt.executeUpdate("DROP TABLE IF EXISTS accounts");
+        stmt.executeUpdate("DROP TABLE IF EXISTS tellers");
+        stmt.executeUpdate("DROP TABLE IF EXISTS branches");
+        System.out.println("Alle Tabellen wurden geloescht");
+    }
+
+
     public static void main(String[] args) throws Exception
     {
         //Aufbau der Verbindung
-        Connection conn = Verbindung.dbConnection();
+        Connection conn = Connect.dbConnection();
 
         //Loeschen der alten Tabellen branches, accounts, tellers und history
-        DeleteTables.deleteTables(conn);
+        deleteTables(conn);
 
         //Erstellen der Tabelle branches
-        Tables.createBranches(conn);
+        TablesAlt.createBranches(conn);
 
         //Erstellen der Tabelle accounts
-        Tables.createAccounts(conn);
+        TablesAlt.createAccounts(conn);
 
         //Erstellen der Tabelle tellers
-        Tables.createTellers(conn);
+        TablesAlt.createTellers(conn);
 
         //Erstellen der Tabelle history
-        Tables.createHistory(conn);
+         TablesAlt.createHistory(conn);
+
+        //Eingabe n
+        System.out.println("Geben Sie n ein: ");
+        int n = scan.nextInt();
+
+        TableValue values = new TableValue();
+        values.fillBranches(n,conn);
     }
 }
