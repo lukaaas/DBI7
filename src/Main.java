@@ -8,11 +8,13 @@ public class Main
     public static void deleteTables(Connection conn) throws SQLException
     {
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("DROP TABLE IF EXISTS history");
+        stmt.executeUpdate("Drop TABLE IF EXISTS history");
         stmt.executeUpdate("DROP TABLE IF EXISTS accounts");
         stmt.executeUpdate("DROP TABLE IF EXISTS tellers");
         stmt.executeUpdate("DROP TABLE IF EXISTS branches");
         System.out.println("Alle Tabellen wurden geloescht");
+
+
     }
 
 
@@ -41,6 +43,11 @@ public class Main
         int n = scan.nextInt();
 
         TableValue values = new TableValue();
-        values.fillBranches(n,conn);
+        long start = System.currentTimeMillis();
+        values.fillBranches(n, conn);
+        values.fillAccounts(n, conn);
+        values.fillTellers(n, conn);
+        long ende = System.currentTimeMillis();
+        System.out.println(ende - start);
     }
 }
