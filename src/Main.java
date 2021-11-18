@@ -5,7 +5,7 @@ public class Main
 {
     static Scanner scan = new Scanner(System.in);
 
-    public static void deleteTables(Connection conn) throws SQLException
+    static void deleteTables(Connection conn) throws SQLException
     {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("Drop TABLE IF EXISTS history");
@@ -22,7 +22,7 @@ public class Main
 
         //Loeschen der alten Tabellen branches, accounts, tellers und history
         deleteTables(conn);
-
+       //Tables.createTables(conn);
         //Erstellen der Tabelle branches
         TablesAlt.createBranches(conn);
 
@@ -33,18 +33,20 @@ public class Main
         TablesAlt.createTellers(conn);
 
         //Erstellen der Tabelle history
-         TablesAlt.createHistory(conn);
+        TablesAlt.createHistory(conn);
 
         //Eingabe n
         System.out.println("Geben Sie n ein: ");
         int n = scan.nextInt();
 
         TableValue values = new TableValue();
-        long start = System.currentTimeMillis();
-        values.fillBranches(n, conn);
-        values.fillAccounts(n, conn);
-        values.fillTellers(n, conn);
-        long ende = System.currentTimeMillis();
-        System.out.println(ende - start);
+        double start = System.currentTimeMillis();
+        //values.fillBranches(n, conn);
+        //values.fillAccounts(n, conn);
+        //values.fillTellers(n, conn);
+        values.fillBranchesL(n,conn);
+        double ende = System.currentTimeMillis();
+        System.out.println((ende - start) / 1000);
+        conn.close();
     }
 }

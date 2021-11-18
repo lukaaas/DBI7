@@ -8,7 +8,7 @@ public class Connect
     {   //Wird verwendet um eine Verbindung zu einer MySQL-Datenbank herzustellen
         //Datenbank URL, Datenbank user und passwort werden hinterlegt
         java.sql.Connection conn = null;
-        String connectionUrl = "jdbc:mysql://192.168.178.47:3306/DBI";
+        String connectionUrl = "jdbc:mysql://127.0.0.1:3306/DBI";
         String connectionUser = "dbi";
         String connectionPassword ="root";
         //URL, USER und PASSWORD werden übergeben

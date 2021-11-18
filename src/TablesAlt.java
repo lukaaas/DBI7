@@ -1,7 +1,8 @@
 
 import java.sql.*;
 
-public class TablesAlt {
+public class TablesAlt
+{
     static PreparedStatement stmt;
 
     //Erstellt die Tabelle branches

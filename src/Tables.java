@@ -1,4 +1,3 @@
-/*
 import java.sql.*;
 
 public class Tables
@@ -16,8 +15,7 @@ public class Tables
                 + "CREATE TABLE history(accid int not null, tellerid int not null, delta int not null,"
                 + "branchid int not null, accbalance int not null, cmmnt char(30) not null, foreign key(accid) references accounts(accid),"
                 + "foreign key(tellerid) references tellers(tellerid), foreign key (branchid) references branches(branchid));");
-        stmt.executeUpdate();
+        stmt.execute();
         System.out.println("Tabelle branches wurde erstellt");
     }
 }
-*/
