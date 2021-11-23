@@ -17,36 +17,34 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //Aufbau der Verbindung
-        Connection conn = Connect.dbConnection();
+        try
+        {
+            //Aufbau der Verbindung
+            Connection conn = Connect.dbConnection();
 
-        //Loeschen der alten Tabellen branches, accounts, tellers und history
-        deleteTables(conn);
-       //Tables.createTables(conn);
-        //Erstellen der Tabelle branches
-        TablesAlt.createBranches(conn);
+            //Loeschen der alten Tabellen branches, accounts, tellers und history
+            deleteTables(conn);
 
-        //Erstellen der Tabelle accounts
-        TablesAlt.createAccounts(conn);
+            //Tabellen werden erstellt
+            Tables.createTables(conn);
 
-        //Erstellen der Tabelle tellers
-        TablesAlt.createTellers(conn);
+            //Eingabe n
+            System.out.println("Geben Sie n ein: ");
+            int n = scan.nextInt();
 
-        //Erstellen der Tabelle history
-        TablesAlt.createHistory(conn);
-
-        //Eingabe n
-        System.out.println("Geben Sie n ein: ");
-        int n = scan.nextInt();
-
-        TableValue values = new TableValue();
-        double start = System.currentTimeMillis();
-        //values.fillBranches(n, conn);
-        //values.fillAccounts(n, conn);
-        //values.fillTellers(n, conn);
-        values.fillBranchesL(n,conn);
-        double ende = System.currentTimeMillis();
-        System.out.println((ende - start) / 1000);
-        conn.close();
+            //Beginn Zeitmessung
+            long start = System.currentTimeMillis();
+            //Methoden zum Tabellenfuellen werden aufgerufen
+            TableValue.fillBranches(n, conn);
+            TableValue.fillAccounts(n, conn);
+            TableValue.fillTellers(n, conn);
+            long ende = System.currentTimeMillis();
+            System.out.println((ende - start));
+            conn.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

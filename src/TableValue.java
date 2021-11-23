@@ -2,30 +2,57 @@ import java.sql.*;
 
 public class TableValue
 {
-    static PreparedStatement stmt;
-
-    public void fillBranchesL(int n, Connection conn) throws SQLException, Exception
+    static void fillBranches(int n, Connection conn) throws SQLException
     {
-        PreparedStatement stmt =  conn.prepareStatement("INSERT INTO branches VALUES (?, 'abababababababababab', 0, 'abcdefghijklmnopqrstuvwxyzabababababababababababababababababababababab');");
-        stmt.close();
+        PreparedStatement stmt =  conn.prepareStatement("INSERT INTO branches VALUES (?, 'abababababababababab', 0, 'abcdefghijklmnopqrstuvwxyzababababababababababababababababababababababaa');");
+
         for (int i = 1; i <= n; i++)
         {
-            int branchId = i;
-            try
-            {
-                System.out.println(i);
-                stmt.setInt(1,i);
-                stmt.executeUpdate(); //Executes the query
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
+            stmt.setInt(1,i);
+            stmt.addBatch(); //Executes the query
         }
+        stmt.executeBatch();
         conn.commit();
         System.out.println("Tabelle branches wurde gefuellt");
     }
 
-    public void fillBranches(int n, Connection conn) throws SQLException, Exception
+    static void fillAccounts(int n, Connection conn) throws SQLException
+    {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO accounts VALUES(?,'abcdefghijklmnopqrst',0,?,'abcdefghijklmnopqrstuvwxyzababababababababababababababababababababab')");
+
+        for(int i = 1; i <= n * 100000; i++)
+        {
+            stmt.setInt(1,i);
+            stmt.setInt(2,(int) (Math.random() * n +1));
+            stmt.addBatch();
+        }
+        stmt.executeBatch();
+        conn.commit();
+        System.out.println("Tabelle accounts wurde gefuellt");
+    }
+
+    static void fillTellers(int n, Connection conn)throws SQLException
+    {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO tellers VALUES(?,'abcdefghijklmnopqrst',0,?,'abcdefghijklmnopqrstuvwxyzababababababababababababababababababababab')");
+
+        for(int i = 1; i <= n * 10; i++)
+        {
+            stmt.setInt(1,i);
+            stmt.setInt(2,(int) (Math.random() * i));
+            stmt.addBatch();
+        }
+        stmt.executeBatch();
+        conn.commit();
+        stmt.close();
+        System.out.println("Tabelle tellers wurde gefuellt");
+    }
+}
+
+/*
+
+ *//*
+    static PreparedStatement stmt;
+    static public void fillBranches(int n, Connection conn) throws SQLException, Exception
     {
         String branch = "INSERT INTO branches (branchname, balance, address) values (?, 0, ?)";
         stmt = conn.prepareStatement(branch);
@@ -41,8 +68,8 @@ public class TableValue
         conn.commit();
         System.out.println("Tabelle branches wurde gefüllt!");
     }
-/*
-    public void fillAccounts(int n, Connection conn) throws SQLException, Exception
+
+    static public void fillAccounts(int n, Connection conn) throws SQLException, Exception
     {
         String accounts = "INSERT INTO accounts(name, balance, branchid, address) values(?,0,?,?)";
         stmt = conn.prepareStatement(accounts);
@@ -73,5 +100,5 @@ public class TableValue
     }
 */
 
-}
+
 

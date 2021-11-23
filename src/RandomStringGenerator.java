@@ -1,6 +1,7 @@
+/*
 public class RandomStringGenerator
 {
-    public static enum Mode
+    public enum Mode
     {
         ALPHA, ALPHANUMERIC, NUMERIC
     }
@@ -35,4 +36,6 @@ public class RandomStringGenerator
         return buffer.toString();
     }
 }
+
+ */
 
