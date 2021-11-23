@@ -1,0 +1,11 @@
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Éø«ó
+T
+java:S1128"8Remove this unused import 'com.mysql.cj.xdevapi.Result'.(ÏÖ¦	8•ÿåÈÒ/
+^
+java:S2095
+"HUse try-with-resources or close this "Connection" in a "finally" clause.(Éé¸
+d
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(˜ğ×8¬¹åÈÒ/
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶ò’‚şÿÿÿÿ

@@ -14,11 +14,10 @@ public class Main
         stmt.executeUpdate("DROP TABLE IF EXISTS branches");
         System.out.println("Alle Tabellen wurden geloescht");
     }
-
+//dbi3ffff1
     public static void main(String[] args) throws Exception
     {
-        try
-        {
+
             //Aufbau der Verbindung
             Connection conn = Connect.dbConnection();
 
@@ -39,12 +38,7 @@ public class Main
             TableValue.fillAccounts(n, conn);
             TableValue.fillTellers(n, conn);
             long ende = System.currentTimeMillis();
-            System.out.println((ende - start));
+            System.out.println(ende - start);
             conn.close();
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 }

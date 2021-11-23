@@ -4,15 +4,21 @@ public class TableValue
 {
     static void fillBranches(int n, Connection conn) throws SQLException
     {
-        PreparedStatement stmt =  conn.prepareStatement("INSERT INTO branches VALUES (?, 'abababababababababab', 0, 'abcdefghijklmnopqrstuvwxyzababababababababababababababababababababababaa');");
+        PreparedStatement stmt =  conn.prepareStatement("INSERT INTO branches VALUES(?,'abababababababababab',0,'abcdefghijklmnopqrstuvwxyzababababababababababababababababababababababaa')");
 
         for (int i = 1; i <= n; i++)
         {
             stmt.setInt(1,i);
             stmt.addBatch(); //Executes the query
         }
-        stmt.executeBatch();
-        conn.commit();
+        try {
+            stmt.executeBatch();
+            conn.commit();
+        }
+        catch(SQLException e)
+            {
+                System.out.println(e.getMessage());
+            }
         System.out.println("Tabelle branches wurde gefuellt");
     }
 
@@ -38,7 +44,7 @@ public class TableValue
         for(int i = 1; i <= n * 10; i++)
         {
             stmt.setInt(1,i);
-            stmt.setInt(2,(int) (Math.random() * i));
+            stmt.setInt(2,(int) (Math.random() * n + 1));
             stmt.addBatch();
         }
         stmt.executeBatch();
